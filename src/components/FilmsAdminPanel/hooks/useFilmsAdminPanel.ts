@@ -22,7 +22,13 @@ export const useFilmsAdminPanel = () => {
 
 
   const handleSaveCategory = (categoryData: Category) => {
-    setCategories(prev => categoryData?.name ? prev.filter((c) => c.id !== categoryData.id).concat(categoryData) : prev);
+    setCategories(prev => {
+      const isExist = prev.some(c => c.id === categoryData.id);
+      if (isExist) {
+        return prev.map(c => c.id === categoryData.id ? categoryData : c);
+      }
+      return [...prev, categoryData];
+    });
     setCategory(null);
   };
 

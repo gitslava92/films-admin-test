@@ -101,7 +101,7 @@ export const CategoryForm = ({
           <Button variant="contained" onClick={handleCancel}>Отменить</Button>
           <Button variant="contained" color="error" onClick={() => handleDeleteCategory(category)}>Удалить
             категорию</Button>
-          <Button variant="contained" onClick={() => handleSubmit()}>Сохранить</Button>
+          <Button variant="contained" onClick={handleSubmit}>Сохранить</Button>
         </Stack>
       </Stack>
     </Stack>
