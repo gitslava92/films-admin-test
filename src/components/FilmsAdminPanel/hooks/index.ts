@@ -1,1 +1,1 @@
-export {useFilmsAdminPanel, newCategory} from './useFilmsAdminPanel';
+export {useFilmsAdminPanel} from './useFilmsAdminPanel';

@@ -1,4 +1,4 @@
-import {Box, Container} from "@mui/material";
+import {Container} from "@mui/material";
 import {useFilmsAdminPanel} from "./hooks";
 import {CategoryForm} from "../CategoryForm";
 import {CategoriesList} from "../CategoriesList";
@@ -9,7 +9,11 @@ export const FilmsAdminPanel = () => {
     films,
     categories,
     category,
-    handleCategoryAction,
+    handleCreateCategory,
+    handleEditCategory,
+    handleDeleteCategory,
+    handleSaveCategory,
+    handleCancel
   } = useFilmsAdminPanel()
 
   return (
@@ -19,12 +23,15 @@ export const FilmsAdminPanel = () => {
           initialCategories={initialCategories}
           category={category}
           films={films}
-          handleCategoryAction={handleCategoryAction}
+          onDeleteCategory={handleDeleteCategory}
+          onSaveCategory={handleSaveCategory}
+          handleCancel={handleCancel}
         />
         : <CategoriesList
           categories={categories}
           films={films}
-          handleCategoryAction={handleCategoryAction}
+          handleEditCategory={handleEditCategory}
+          handleCreateCategory={handleCreateCategory}
         />
       }
     </Container>

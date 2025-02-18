@@ -1,16 +1,25 @@
 import {Autocomplete, Box, Button, IconButton, Paper, Stack, TextField, Typography} from "@mui/material";
 import {DeleteForever} from "@mui/icons-material";
-import {Category, CategoryAction, Film} from "../FilmsAdminPanel";
+import {Category, Film} from "../FilmsAdminPanel";
 import {useCategoryForm} from "./hooks";
 
 interface CategoryFormProps {
   initialCategories: Category[];
   category: Category;
   films: Film[];
-  handleCategoryAction: (action: CategoryAction, category?: Category) => void;
+  onDeleteCategory: (category: Category) => void;
+  onSaveCategory: (category: Category) => void;
+  handleCancel: () => void;
 }
 
-export const CategoryForm = ({initialCategories, category, films, handleCategoryAction}: CategoryFormProps) => {
+export const CategoryForm = ({
+    initialCategories,
+    category,
+    films,
+    onDeleteCategory,
+    onSaveCategory,
+    handleCancel
+  }: CategoryFormProps) => {
   const {
     formCategory,
     handleChangeName,
@@ -19,7 +28,12 @@ export const CategoryForm = ({initialCategories, category, films, handleCategory
     handleDeleteCategory,
     handleUpdateFilms,
     handleSubmit,
-  } = useCategoryForm({initialCategories, category, handleCategoryAction})
+  } = useCategoryForm({
+    initialCategories,
+    category,
+    onDeleteCategory,
+    onSaveCategory,
+  })
 
   return (
     <Stack>
@@ -84,7 +98,7 @@ export const CategoryForm = ({initialCategories, category, films, handleCategory
           </Stack>
         </Stack>
         <Stack direction="row" spacing={3}>
-          <Button variant="contained" onClick={() => handleCategoryAction(CategoryAction.Cancel)}>Отменить</Button>
+          <Button variant="contained" onClick={handleCancel}>Отменить</Button>
           <Button variant="contained" color="error" onClick={() => handleDeleteCategory(category)}>Удалить
             категорию</Button>
           <Button variant="contained" onClick={() => handleSubmit()}>Сохранить</Button>

@@ -1,9 +1,14 @@
 import {useCallback, useState} from "react";
-import {Category, CategoryAction, newCategory} from "../../FilmsAdminPanel";
+import {Category, newCategory} from "../../FilmsAdminPanel";
 import {ChangeLog, UseCategoryForm} from "../CategoryForm.types.ts";
 import {generateId} from "../helpers/genereteId.ts";
 
-export const useCategoryForm = ({initialCategories, category, handleCategoryAction}: UseCategoryForm) => {
+export const useCategoryForm = ({
+  initialCategories,
+  category,
+  onDeleteCategory,
+  onSaveCategory
+}: UseCategoryForm) => {
   const [formCategory, setFormCategory] = useState<Category>({
     id: category?.id || generateId(),
     name: category?.name || "",
@@ -54,7 +59,7 @@ export const useCategoryForm = ({initialCategories, category, handleCategoryActi
   }, [initialCategories]);
 
 
-  const handleUpdateSubCategory = useCallback((subCategoryId: number, changes: Partial<Category["subCategories"][0]>) => {
+  const handleUpdateSubCategory = (subCategoryId: number, changes: Partial<Category["subCategories"][0]>) => {
     setFormCategory((prev) => {
       const updatedSubCategories = prev.subCategories.map((sub) =>
         sub.id === subCategoryId ? {...sub, ...changes} : sub
@@ -66,18 +71,18 @@ export const useCategoryForm = ({initialCategories, category, handleCategoryActi
 
       return updatedCategory;
     });
-  }, [updateChangeLog]);
+  };
 
-  const handleAddSubCategory = useCallback(() => {
+  const handleAddSubCategory = () => {
     const newSubCategory = {id: generateId(), name: "", filmIds: []};
     setFormCategory((prev) => {
       const updatedCategory = {...prev, subCategories: [...prev.subCategories, newSubCategory]};
       updateChangeLog(updatedCategory);
       return updatedCategory;
     });
-  }, [updateChangeLog]);
+  };
 
-  const handleDeleteSubCategory = useCallback((subCategoryId: number) => {
+  const handleDeleteSubCategory = (subCategoryId: number) => {
     setFormCategory((prev) => {
       const updatedCategory = {
         ...prev,
@@ -86,21 +91,24 @@ export const useCategoryForm = ({initialCategories, category, handleCategoryActi
       updateChangeLog(updatedCategory);
       return updatedCategory;
     });
-  }, [updateChangeLog]);
+  };
 
-  const handleDeleteCategory = useCallback((category: Category) => {
+  const handleDeleteCategory = (category: Category) => {
     const isExist = initialCategories.some((c) => c.id === category.id);
-    handleCategoryAction(CategoryAction.Delete, category);
-    setFormCategory(newCategory);
+    onDeleteCategory(category);
     setChangeLog((prev) => {
       if (isExist && !prev.deletedCategories.some((c) => c.id === category.id)) {
-        return {...prev, deletedCategories: [...prev.deletedCategories, {id: category.id}]};
+        const log = {...prev, deletedCategories: [...prev.deletedCategories, {id: category.id}]}
+        console.log('changeLog', log);
+        return log;
       }
+      console.log('changeLog', prev);
       return prev;
     });
-  }, [handleCategoryAction, initialCategories]);
+    setFormCategory(newCategory);
+  };
 
-  const handleChangeName = useCallback((name: string, subCategoryId?: number) => {
+  const handleChangeName = (name: string, subCategoryId?: number) => {
     if (subCategoryId) {
       handleUpdateSubCategory(subCategoryId, {name});
     } else {
@@ -110,17 +118,17 @@ export const useCategoryForm = ({initialCategories, category, handleCategoryActi
         return updatedCategory;
       });
     }
-  }, [handleUpdateSubCategory, updateChangeLog]);
+  };
 
-  const handleUpdateFilms = useCallback((subCategoryId: number, filmIds: number[]) => {
+  const handleUpdateFilms = (subCategoryId: number, filmIds: number[]) => {
     handleUpdateSubCategory(subCategoryId, {filmIds});
-  }, [handleUpdateSubCategory]);
+  };
 
-  const handleSubmit = useCallback(() => {
-    handleCategoryAction(CategoryAction.Save, formCategory);
+  const handleSubmit = () => {
+    onSaveCategory(formCategory);
     console.log('formCategory', formCategory)
     console.log('changeLog', changeLog);
-  }, [formCategory, changeLog, handleCategoryAction]);
+  };
 
   return {
     formCategory,

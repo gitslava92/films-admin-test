@@ -1,9 +1,10 @@
-import {Category, CategoryAction} from "../FilmsAdminPanel";
+import {Category} from "../FilmsAdminPanel";
 
 export interface UseCategoryForm {
   initialCategories: Category[];
   category: Category;
-  handleCategoryAction: (action: CategoryAction, category?: Category) => void;
+  onDeleteCategory: (category: Category) => void;
+  onSaveCategory: (category: Category) => void;
 }
 
 export interface ChangeLog {

@@ -14,11 +14,3 @@ export interface Category {
   name: string;
   subCategories: SubCategory[];
 }
-
-export enum CategoryAction {
-  Create,
-  Edit,
-  Delete,
-  Save,
-  Cancel
-}

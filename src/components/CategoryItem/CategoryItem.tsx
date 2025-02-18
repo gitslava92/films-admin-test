@@ -1,21 +1,21 @@
 import {Box, IconButton, List, Paper, Typography} from "@mui/material";
 import {Edit} from "@mui/icons-material";
-import {Category, CategoryAction, Film} from "../FilmsAdminPanel";
+import {Category, Film} from "../FilmsAdminPanel";
 
 interface CategoryItemProps {
   category: Category;
   films: Film[];
-  handleCategoryAction: (action: CategoryAction, category?: Category) => void;
+  handleEditCategory: (category: Category) => void;
 }
 
-export const CategoryItem = ({category, handleCategoryAction, films}: CategoryItemProps) => {
+export const CategoryItem = ({category, handleEditCategory, films}: CategoryItemProps) => {
   return (
       <Paper elevation={8} sx={{p: 3, mb: 3}}>
         <Typography variant="h4" sx={{ display: 'flex', gap: 3 }}>
           {category.name}
           <IconButton
             color="primary"
-            onClick={() => handleCategoryAction(CategoryAction.Edit, category)}
+            onClick={() => handleEditCategory(category)}
           >
             <Edit />
           </IconButton>
