@@ -23,11 +23,11 @@ export const CategoryForm = ({initialCategories, category, films, handleCategory
 
   return (
     <Stack>
-      <Typography variant="h3" pb={3}>
+      <Typography variant="h3" pb={3} textAlign="center">
         {category?.name ? 'Редактирование категории' : 'Добавление новой категории'}
       </Typography>
       <Stack direction="column" useFlexGap spacing={3}>
-        <Paper sx={{p: 3}}>
+        <Paper elevation={8} sx={{p: 3}}>
           <TextField
             label="Категория"
             fullWidth
@@ -40,7 +40,7 @@ export const CategoryForm = ({initialCategories, category, films, handleCategory
         <Stack direction="column" useFlexGap spacing={3}>
           {!!formCategory?.subCategories?.length && formCategory.subCategories.map((subCategory) => (
             <Stack useFlexGap spacing={3} key={subCategory.id}>
-              <Paper sx={{p: 3}}>
+              <Paper elevation={8} sx={{p: 3}}>
                 <Stack direction="column" useFlexGap spacing={3}>
                   <Stack direction="row" spacing={1}>
                     <TextField

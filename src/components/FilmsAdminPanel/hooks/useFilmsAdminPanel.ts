@@ -1,8 +1,9 @@
-import { useState, useCallback } from "react";
+import {useState, useCallback} from "react";
 import {Category, CategoryAction} from "../FilmsAdminPanel.types.ts";
 import {initialData} from "../helpers/initialData.ts";
+import {generateId} from "../../CategoryForm/helpers/genereteId.ts";
 
-export const newCategory = { id: Date.now(), name: '', subCategories: [] };
+export const newCategory = {id: generateId(), name: '', subCategories: []};
 
 export const useFilmsAdminPanel = () => {
   const [categories, setCategories] = useState<Category[]>(initialData.categories);
@@ -13,7 +14,7 @@ export const useFilmsAdminPanel = () => {
     if (action === CategoryAction.Edit && categoryData) setCategory(categoryData);
     if (action === CategoryAction.Delete && categoryData) {
       setCategories(prev => prev.filter((c) => c.id !== categoryData.id));
-      setCategory(newCategory);
+      setCategory(null);
     }
     if (action === CategoryAction.Save) {
       setCategories(prev => categoryData?.name ? prev.filter((c) => c.id !== categoryData.id).concat(categoryData) : prev);

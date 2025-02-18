@@ -10,7 +10,7 @@ interface CategoryItemProps {
 
 export const CategoryItem = ({category, handleCategoryAction, films}: CategoryItemProps) => {
   return (
-      <Paper sx={{p: 3, mb: 3}}>
+      <Paper elevation={8} sx={{p: 3, mb: 3}}>
         <Typography variant="h4" sx={{ display: 'flex', gap: 3 }}>
           {category.name}
           <IconButton
@@ -20,11 +20,11 @@ export const CategoryItem = ({category, handleCategoryAction, films}: CategoryIt
             <Edit />
           </IconButton>
         </Typography>
-        <List sx={{ p: 3 }}>
+        <List sx={{ pl: 5 }}>
           {category?.subCategories?.map((subCategory) => (
             <Box key={subCategory?.id}>
               <Typography variant="h5">{subCategory.name}</Typography>
-              <List sx={{ p: 3 }}>
+              <List sx={{ pl: 5 }}>
                 {(subCategory?.filmIds || [])?.map((filmId) => {
                   const film = films?.find((f) => f?.id === filmId);
                   return <Box key={film?.id}>{film?.name}</Box>;

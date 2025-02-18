@@ -1,10 +1,11 @@
 import {useCallback, useState} from "react";
 import {Category, CategoryAction, newCategory} from "../../FilmsAdminPanel";
 import {ChangeLog, UseCategoryForm} from "../CategoryForm.types.ts";
+import {generateId} from "../helpers/genereteId.ts";
 
 export const useCategoryForm = ({initialCategories, category, handleCategoryAction}: UseCategoryForm) => {
   const [formCategory, setFormCategory] = useState<Category>({
-    id: category?.id || Date.now(),
+    id: category?.id || generateId(),
     name: category?.name || "",
     subCategories: category?.subCategories || [],
   });
@@ -68,7 +69,7 @@ export const useCategoryForm = ({initialCategories, category, handleCategoryActi
   }, [updateChangeLog]);
 
   const handleAddSubCategory = useCallback(() => {
-    const newSubCategory = {id: Date.now(), name: "", filmIds: []};
+    const newSubCategory = {id: generateId(), name: "", filmIds: []};
     setFormCategory((prev) => {
       const updatedCategory = {...prev, subCategories: [...prev.subCategories, newSubCategory]};
       updateChangeLog(updatedCategory);
