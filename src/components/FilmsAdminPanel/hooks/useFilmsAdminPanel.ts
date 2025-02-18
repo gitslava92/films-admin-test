@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import {Category, CategoryAction} from "./FilmsAdminPanel.types.ts";
-import { initialData } from "./initialData.ts";
+import {Category, CategoryAction} from "../FilmsAdminPanel.types.ts";
+import {initialData} from "../helpers/initialData.ts";
 
 export const newCategory = { id: Date.now(), name: '', subCategories: [] };
 

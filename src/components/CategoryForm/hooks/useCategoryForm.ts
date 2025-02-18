@@ -1,7 +1,6 @@
 import {useCallback, useState} from "react";
-import {Category, CategoryAction} from "../FimsAdminPanel/FilmsAdminPanel.types.ts";
-import {newCategory} from "../FimsAdminPanel/useFilmsAdminPanel.ts";
-import {ChangeLog, UseCategoryForm} from "./CategoryForm.types.ts";
+import {Category, CategoryAction, newCategory} from "../../FilmsAdminPanel";
+import {ChangeLog, UseCategoryForm} from "../CategoryForm.types.ts";
 
 export const useCategoryForm = ({initialCategories, category, handleCategoryAction}: UseCategoryForm) => {
   const [formCategory, setFormCategory] = useState<Category>({

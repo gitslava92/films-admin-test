@@ -1,7 +1,6 @@
 import {Box, Button, List, Typography} from "@mui/material";
-import {CategoryItem} from "./CategoryItem.tsx";
-import {Category, CategoryAction, Film} from "../FimsAdminPanel/FilmsAdminPanel.types.ts";
-
+import {Category, CategoryAction, Film} from "../FilmsAdminPanel";
+import {CategoryItem} from "../CategoryItem";
 
 interface CategoriesListProps {
   categories: Category[];
@@ -12,8 +11,8 @@ interface CategoriesListProps {
 export const CategoriesList = ({categories, films, handleCategoryAction}: CategoriesListProps) => {
   return (
     <Box>
-      <Typography variant="h3" mb={4}>Управление кинотеатром</Typography>
-      <Button variant="contained" onClick={() => handleCategoryAction(CategoryAction.Create)}>
+      <Typography variant="h3" mb={4} textAlign="center">Управление кинотеатром</Typography>
+      <Button variant="contained" onClick={() => handleCategoryAction(CategoryAction.Create)} sx={{ ml: 3 }}>
         Добавить новую категорию
       </Button>
       {!!categories?.length && (

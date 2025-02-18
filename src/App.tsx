@@ -1,4 +1,4 @@
-import {FilmsAdminPanel} from "./components/FimsAdminPanel/FilmsAdminPanel.tsx";
+import {FilmsAdminPanel} from "./components/FilmsAdminPanel";
 
 const App = () => {
   return (

@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# 🎬 Movie Categories Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🛠️ Описание проекта
 
-Currently, two official plugins are available:
+Это административная панель для управления категориями и подкатегориями фильмов. Приложение позволяет создавать, редактировать и удалять категории, а также управлять подкатегориями через удобный интерфейс.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Функционал
 
-## Expanding the ESLint configuration
+- 🔹 Добавление, редактирование и удаление категорий
+- 🔹 Управление подкатегориями для каждой категории
+- 🔹 Удобный пользовательский интерфейс с динамическим обновлением данных
+- 🔹 Валидация форм для корректного ввода данных
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🧰 Используемые технологии
 
-- Configure the top-level `parserOptions` property like this:
+- ⚛️ React + Vite
+- ⚙️ TypeScript
+- 🖌️ @mui/material для компонентов интерфейса
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ⚙️ Установка и запуск
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/your-username/movie-admin-panel.git
+   cd movie-admin-panel
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. Установите зависимости:
+   ```npm install
+   
+3. Запустите проект:
+   ```npm run dev
+   
+4. Структура проекта:
+   src/
+   ├── components/       # UI-компоненты
+   ├── common/           # Общие утилиты и хуки
+   ├── __generated__/    # Сгенерированные типы
+   ├── hooks/            # Кастомные хуки
+   └── constants/        # Переменные проекта
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. 

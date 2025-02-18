@@ -1,4 +1,4 @@
-import {Category, CategoryAction} from "../FimsAdminPanel/FilmsAdminPanel.types.ts";
+import {Category, CategoryAction} from "../FilmsAdminPanel";
 
 export interface UseCategoryForm {
   initialCategories: Category[];

@@ -1,6 +1,6 @@
-import {Box, IconButton, List, Typography} from "@mui/material";
-import {Category, CategoryAction, Film} from "../FimsAdminPanel/FilmsAdminPanel.types.ts";
+import {Box, IconButton, List, Paper, Typography} from "@mui/material";
 import {Edit} from "@mui/icons-material";
+import {Category, CategoryAction, Film} from "../FilmsAdminPanel";
 
 interface CategoryItemProps {
   category: Category;
@@ -10,7 +10,7 @@ interface CategoryItemProps {
 
 export const CategoryItem = ({category, handleCategoryAction, films}: CategoryItemProps) => {
   return (
-      <Box>
+      <Paper sx={{p: 3, mb: 3}}>
         <Typography variant="h4" sx={{ display: 'flex', gap: 3 }}>
           {category.name}
           <IconButton
@@ -33,6 +33,6 @@ export const CategoryItem = ({category, handleCategoryAction, films}: CategoryIt
             </Box>
           ))}
         </List>
-      </Box>
+      </Paper>
   );
 };

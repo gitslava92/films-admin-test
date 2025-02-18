@@ -1,7 +1,7 @@
-import {CategoryForm} from "../CategoryForm/CategoryForm.tsx";
-import {CategoriesList} from "../CategoriesList/CategoriesList.tsx";
-import {useFilmsAdminPanel} from "./useFilmsAdminPanel.ts";
-import {Box} from "@mui/material";
+import {Box, Container} from "@mui/material";
+import {useFilmsAdminPanel} from "./hooks";
+import {CategoryForm} from "../CategoryForm";
+import {CategoriesList} from "../CategoriesList";
 
 export const FilmsAdminPanel = () => {
   const {
@@ -13,7 +13,7 @@ export const FilmsAdminPanel = () => {
   } = useFilmsAdminPanel()
 
   return (
-    <Box sx={{m: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <Container maxWidth={'md'}>
       {category
         ? <CategoryForm
           initialCategories={initialCategories}
@@ -27,6 +27,6 @@ export const FilmsAdminPanel = () => {
           handleCategoryAction={handleCategoryAction}
         />
       }
-    </Box>
+    </Container>
   );
 };
